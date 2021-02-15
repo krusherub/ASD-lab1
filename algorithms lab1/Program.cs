@@ -20,7 +20,7 @@ namespace algorithms_lab1
             NotArrayList array = new NotArrayList();
             for(int i=1; i<15; i++)
             {
-                array.addToTheEnd(i);
+                array.deleteAtTheBeginning();
             }
             for (int i = 0; i < 14; i++)
             {
@@ -32,6 +32,7 @@ namespace algorithms_lab1
             {
                 Console.WriteLine(array.getElement(i));
             }
+            Console.WriteLine(array.size());
         }
     }
 

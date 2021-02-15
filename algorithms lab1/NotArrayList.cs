@@ -49,7 +49,7 @@ namespace algorithms_lab1
         //adding methods
         public void addToTheEnd(object obj)
         {
-            if (sizeOfArray >= notArrayList.Length/2)
+            if (!isLimitedInSize && (sizeOfArray >= notArrayList.Length/2))
             {
                 Array.Resize(ref notArrayList, (notArrayList.Length * 3));
                 
@@ -61,7 +61,12 @@ namespace algorithms_lab1
         }
         public void addToTheBeginning(object obj)
         {
-            if (sizeOfArray >= notArrayList.Length / 2)
+            if(sizeOfArray==0)
+            {
+                Console.WriteLine("Can't add elements to the beginning of an empty array");
+                Environment.Exit(1);
+            }
+            if (!isLimitedInSize && (sizeOfArray >= notArrayList.Length / 2))
             {
                 Array.Resize(ref notArrayList, (notArrayList.Length * 3));
 
@@ -75,7 +80,17 @@ namespace algorithms_lab1
         }
         public void addToTheMiddle(object obj, int index)
         {
-            if (sizeOfArray >= notArrayList.Length / 2)
+            if ( index<0)
+            {
+                Console.WriteLine("Index can't be less than zero");
+                Environment.Exit(1);
+            }
+            else if(sizeOfArray < index )
+            {
+                Console.WriteLine("Index can't be bigger than the size of the array");
+                Environment.Exit(1);
+            }
+            if (!isLimitedInSize && (sizeOfArray >= notArrayList.Length / 2))
             {
                 Array.Resize(ref notArrayList, (notArrayList.Length * 3));
 
@@ -91,11 +106,21 @@ namespace algorithms_lab1
         //deleting methods
         public void deleteAtTheEnd()
         {
+            if (sizeOfArray == 0)
+            {
+                Console.WriteLine("Can't delete from an empty array");
+                Environment.Exit(1);
+            }
             sizeOfArray--;
         }
         
         public void deleteAtTheBeginning()
         {
+            if (sizeOfArray == 0)
+            {
+                Console.WriteLine("Can't delete from an empty array");
+                Environment.Exit(1);
+            }
             object first = notArrayList[sizeOfArray-1 ];
             for (int i=sizeOfArray-1; i>0; i-- )
             {
@@ -107,6 +132,21 @@ namespace algorithms_lab1
         }
         public void deleteInTheMiddle(int position)
         {
+            if (sizeOfArray == 0)
+            {
+                Console.WriteLine("Can't delete from an empty array");
+                Environment.Exit(1);
+            }
+            else if ( position < 0)
+            {
+                Console.WriteLine("Index can't be less than zero");
+                Environment.Exit(1);
+            }
+            else if(sizeOfArray < position)
+            {
+                Console.WriteLine("Index can't be bigger than the size of the array");
+                Environment.Exit(1);
+            }
             object first = notArrayList[sizeOfArray - 1];
             for (int i = sizeOfArray; i > (position-1); i--)
             {
@@ -128,6 +168,16 @@ namespace algorithms_lab1
         }
         public void changeMiddle(object obj, int position)
         {
+            if (position < 0)
+            {
+                Console.WriteLine("Index can't be less than zero");
+                Environment.Exit(1);
+            }
+            else if (sizeOfArray < position)
+            {
+                Console.WriteLine("Index can't be bigger than the size of the array");
+                Environment.Exit(1);
+            }
             notArrayList[position - 1] = obj;
         }
 
