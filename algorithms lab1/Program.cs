@@ -10,13 +10,14 @@ namespace algorithms_lab1
         //вернуть прайват
         static void Main(string[] args)
         {
-            LinkedListOneWay<int> s = new LinkedListOneWay<int>();
-            s.addFirst(1);
-            
-            s.addLast(2);
-            s.addLast(3);
-            s.removeLast();
-            
+            ArrList<int> s = new ArrList<int>();
+            LinkedListOneWay<int> s1 = new LinkedListOneWay<int>();
+           // Console.WriteLine(s.getIndexByValue(140));
+            s.printValues();
+            //  Console.WriteLine(s.GetClass().ToString());
+            TimeTesting.test(s1,1000);
+
+
         }
     }
 

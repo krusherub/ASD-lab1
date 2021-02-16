@@ -4,7 +4,7 @@ using System.Text;
 
 namespace algorithms_lab1
 {
-    class LinkedListTwoWay<T>
+    class LinkedListTwoWay<T> : Lists<T>
     {
         private LinkNodeTwo<T> firstNode;
         private LinkNodeTwo<T> lastNode;
@@ -84,7 +84,18 @@ namespace algorithms_lab1
             }
             return temp;
         }
-        public void addByIndex(int index, T item)
+        public int getIndexByValue(T item)
+        {
+            LinkNodeTwo<T> temp = firstNode;
+            for (int i = 0; i < size; i++)
+            {
+                if (temp.Item.Equals(item))
+                    return i;
+                temp = temp.Next;
+            }
+            throw new Exception("Такого элемента нет");
+        }
+        public void add(int index, T item)
         {
             if (index >= size)
                 throw new Exception("Индекс выходит за размер" + size);
@@ -102,7 +113,7 @@ namespace algorithms_lab1
                 size++;
             }
         }
-        public void removeByIndex(int index)
+        public void remove(int index)
         {
             if (index >= size)
                 throw new Exception("Индекс выходит за размер" + size);
@@ -119,6 +130,26 @@ namespace algorithms_lab1
             }
             
         }
+        public int getSum()
+        {
+            if (size == 0)
+                return 0;
+            try
+            {
+                int sum = 0;
+                LinkNodeTwo<T> temp = firstNode;
+                for (int i = 0; i < size; i++)
+                {
+                    sum += Int32.Parse((temp.Item).ToString());
+                    temp = temp.Next;
+                }
+                return sum;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
         public void replaceFirst(T item)
         {
             firstNode.Item = item;
@@ -130,6 +161,10 @@ namespace algorithms_lab1
         public void replace(int index, T item)
         {
             findNodeByIndex(index).Item = item;
+        }
+        public string getName()
+        {
+            return "LinkedListTwoWay";
         }
     }
 }
